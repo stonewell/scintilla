@@ -1393,7 +1393,7 @@ static NSCursor *cursorFromEnum(Window::Cursor cursor) {
 		marginView.owner = self;
 		marginView.ruleThickness = marginView.requiredThickness;
 		scrollView.verticalRulerView = marginView;
-		[scrollView setHasHorizontalRuler: NO];
+		[scrollView setHasHorizontalRuler: YES];
 		[scrollView setHasVerticalRuler: YES];
 		[scrollView setRulersVisible: YES];
 
@@ -2143,4 +2143,3 @@ static NSCursor *cursorFromEnum(Window::Cursor cursor) {
 //--------------------------------------------------------------------------------------------------
 
 @end
-
