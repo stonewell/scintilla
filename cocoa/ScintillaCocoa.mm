@@ -697,7 +697,7 @@ SCIContentView *ScintillaCocoa::ContentView() {
 Scintilla::Point ScintillaCocoa::GetVisibleOriginInMain() const {
 	NSScrollView *scrollView = ScrollContainer();
 	NSRect contentRect = scrollView.contentView.bounds;
-	return Point(static_cast<XYPOSITION>(contentRect.origin.x + vs.fixedColumnWidth), static_cast<XYPOSITION>(contentRect.origin.y));
+	return Point(static_cast<XYPOSITION>(contentRect.origin.x + vs.fixedColumnWidth), static_cast<XYPOSITION>(contentRect.origin.y + scrollView.contentView.contentInsets.top));
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1827,8 +1827,9 @@ void ScintillaCocoa::SetVerticalScrollPos() {
 	NSScrollView *scrollView = ScrollContainer();
 	if (scrollView) {
 		NSClipView *clipView = scrollView.contentView;
+
 		NSRect contentRect = clipView.bounds;
-		[clipView scrollToPoint: NSMakePoint(contentRect.origin.x, topLine * vs.lineHeight)];
+		[clipView scrollToPoint: NSMakePoint(contentRect.origin.x, topLine * vs.lineHeight - clipView.contentInsets.top)];
 		[scrollView reflectScrolledClipView: clipView];
 	}
 }
@@ -2550,5 +2551,3 @@ void ScintillaCocoa::HideFindIndicator() {
 	}
 #endif
 }
-
-
