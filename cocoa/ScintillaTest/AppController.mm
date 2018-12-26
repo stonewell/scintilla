@@ -74,10 +74,10 @@ const char user_keywords[] = // Definition of own keywords, not used by MySQL.
   // Let's load some text for the editor, as initial content.
   NSString *sql = [self exampleText];
 
-  [mEditor setString: sql];
-
   [self setupEditor];
   
+  [mEditor setString: sql];
+
   sciExtra = nil;
 }
 
